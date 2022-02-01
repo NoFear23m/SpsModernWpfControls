@@ -112,7 +112,7 @@ namespace SpsModernWpfControls.Controls.Icon
         }
 
         public static readonly DependencyProperty CaptionMarginProperty =
-            DependencyProperty.Register("CaptionMargin", typeof(Thickness), typeof(XamlIcon), new PropertyMetadata(new Thickness(8,0,0,0)));
+            DependencyProperty.Register("CaptionMargin", typeof(Thickness), typeof(XamlIcon), new PropertyMetadata(new Thickness(0,0,0,0)));
     }
 
 }

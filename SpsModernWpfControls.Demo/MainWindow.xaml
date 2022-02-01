@@ -3,22 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:SpsModernWpfControls.Demo" 
-        xmlns:icon="clr-namespace:SpsModernWpfControls.Controls.Icon;assembly=SpsModernWpfControls.Controls"
+        xmlns:icon="clr-namespace:SpsModernWpfControls.Demo.Icon" 
+        xmlns:bc="clr-namespace:SpsModernWpfControls.Demo.BreadCrumb" xmlns:editors="clr-namespace:SpsModernWpfControls.Controls.Editors;assembly=SpsModernWpfControls.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <ResourceDictionary Source="Resources\Icons.xaml"/>
-    </Window.Resources>
-    <Grid>
-        <StackPanel>
-            <icon:XamlContentIcon XamlIcon="{StaticResource AlertIconPath}" Caption="Hallo Welt" Background="Yellow"/>
-            <icon:XamlPathIcon Name="Icon2" XamlPath="{StaticResource AlertIconPath}" IconSize="Small" IconForeground="Red" Caption="Hallo Welt" 
-                                     CaptionPosition="AboveIcon" CaptionMargin="0,0,0,8" Background="Black"/>
-            <Button Click="Button_Click" IsEnabled="False">
-                <icon:XamlPathIcon Name="Icon3" XamlPath="{StaticResource AlertIconPath}" IconSize="Small" IconForeground="Red" Caption="Hallo Welt"
-                                  IsEnabled="False" />
-            </Button>
-        </StackPanel>
-    </Grid>
+  
+    <TabControl SelectedIndex="2">
+        <TabItem Header="Icon">
+            <icon:uclXamlPathIconDemo/>
+        </TabItem>
+        <TabItem Header="BreadCrumb">
+            <bc:uclSimpleBreadCrumb/>
+        </TabItem>
+        <TabItem Header="Editable">
+            <DockPanel LastChildFill="True">
+                <!--<editors:EditableTextBox ShowEditIcon="True" IsInEditMode="False" Text="Hallo Welt" DockPanel.Dock="Top" Margin="5"
+                                         HighlightBrush="Orange"/>-->
+                <!--<editors:EditableDateBox ShowEditIcon="True" IsInEditMode="False" DateTime="{Binding Source={x:Static System:DateTime.Now},StringFormat='dd.mm.yyy HH:mm:ss'}" 
+                                         HighlightBrush="Brown"
+                                         FontWeight="Bold"/>-->
+            </DockPanel>
+               
+                
+            
+            
+        </TabItem>
+    </TabControl>
 </Window>

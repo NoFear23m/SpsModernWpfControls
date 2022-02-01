@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="SpsModernWpfControls.Demo.Icon.uclXamlPathIconDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpsModernWpfControls.Demo.Icon"
+              xmlns:icon="clr-namespace:SpsModernWpfControls.Controls.Icon;assembly=SpsModernWpfControls.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary Source="..\Resources\Icons.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer>
+            <WrapPanel>
+                <GroupBox Header="XamlPathIcon">
+                    <StackPanel>
+                        <WrapPanel>
+                            <WrapPanel.Resources>
+                                <Style TargetType="{x:Type icon:XamlPathIcon}">
+                                    <Setter Property="Padding" Value="2"/>
+                                    <Setter Property="IconForeground" Value="Orange"/>
+                                </Style>
+                            </WrapPanel.Resources>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="XSmall"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Small"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Large"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="ExtraLarge"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="ExtraExtraLarge"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <WrapPanel.Resources>
+                                <Style TargetType="{x:Type icon:XamlPathIcon}">
+                                    <Setter Property="Padding" Value="6"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="IconForeground" Value="Violet"/>
+                                </Style>
+                            </WrapPanel.Resources>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="XSmall" IconForeground="BlueViolet"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Small" IconForeground="BlueViolet"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium" IconForeground="BlueViolet"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Large" IconForeground="BlueViolet"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="ExtraLarge" IconForeground="BlueViolet"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="ExtraExtraLarge" IconForeground="BlueViolet"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <WrapPanel.Resources>
+                                <Style TargetType="{x:Type icon:XamlPathIcon}">
+                                    <Setter Property="Padding" Value="6"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="IconForeground" Value="Violet"/>
+                                    <Setter Property="Caption" Value="Hello World"/>
+                                    <Setter Property="CaptionMargin" Value="5"/>
+                                    <Setter Property="StandardForeground" Value="Chocolate"/>
+                                    <Setter Property="DisabledForeground" Value="Blue"/>
+                                </Style>
+                            </WrapPanel.Resources>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium" IsEnabled="False"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium" Background="Aqua"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium" CaptionPosition="ToLeftOfIcon"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium" CaptionPosition="AboveIcon"/>
+                            <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Medium" CaptionPosition="BelowIcon"/>
+                        </WrapPanel>
+                    </StackPanel>
+
+                </GroupBox>
+
+
+
+                <GroupBox Header="XamlPathIcon in a Control">
+                    <StackPanel>
+                        <WrapPanel>
+                            <Button IsEnabled="False" Margin="5">
+                                <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Small" IconForeground="Red" Caption="In a Button (Disabled)"
+                                  DisabledForeground="Gray" StandardForeground="Black" Margin="3" CaptionMargin="3,0" />
+                            </Button>
+                            <Button IsEnabled="True" Margin="5">
+                                <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="Small" IconForeground="Red" Caption="In a Button (Enabled)"
+                                  DisabledForeground="Gray" StandardForeground="Black" Margin="3" CaptionMargin="3,0" IsEnabled="True"/>
+                            </Button>
+                            <Expander Margin="5" IsExpanded="False">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <icon:XamlPathIcon XamlPath="{StaticResource AlertIconPath}" IconSize="xSmall" IconForeground="Red" DisabledForeground="Gray" Margin="3"/>
+                                        <Label>Expander with icon</Label>
+                                    </StackPanel>
+                                </Expander.Header>
+                                <Label>Expander is now open</Label>
+                            </Expander>
+
+                        </WrapPanel>
+
+                    </StackPanel>
+
+                </GroupBox>
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

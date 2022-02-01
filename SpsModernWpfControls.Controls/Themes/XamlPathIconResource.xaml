@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SpsModernWpfControls.Controls"
                     xmlns:iconctl="clr-namespace:SpsModernWpfControls.Controls.Icon">
-    <Style TargetType="{x:Type iconctl:XamlPathIcon}">
+    <Style TargetType="{x:Type iconctl:XamlPathIcon}" x:Shared="False">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Padding" Value="0" />
@@ -10,44 +10,45 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type iconctl:XamlPathIcon}">
-                    <Grid Background="{TemplateBinding Background}">
-                        <Grid.Resources>
-                            <local:XamlIconSizeConverter x:Key="IconSizeConverter" />
-                        </Grid.Resources>
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Padding}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.Resources>
+                                <local:XamlIconSizeConverter x:Key="IconSizeConverter" />
+                            </Grid.Resources>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
 
-                        <ContentControl
+                            <ContentControl
                             x:Name="PART_IconPresenter"
                             Grid.Row="1"
                             Grid.Column="1"
                             Width="{TemplateBinding IconSize, Converter={StaticResource IconSizeConverter}}"
                             Height="{TemplateBinding IconSize, Converter={StaticResource IconSizeConverter}}"
                             HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
                             VerticalAlignment="Center"
-                            BorderBrush="{TemplateBinding StandardHighlight}"
                             DataContext="{Binding RelativeSource={RelativeSource Self}}"
                             Focusable="False"
                             Foreground="{TemplateBinding StandardForeground}">
-                            <ContentControl.Content>
-                                <Grid Background="Transparent">
-                                    <ContentControl Content="{TemplateBinding XamlPath}"/>
-                                </Grid>
-                            </ContentControl.Content>
-                        </ContentControl>
+                                <ContentControl.Content>
+                                    <Grid Background="Transparent">
+                                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding XamlPath}"/>
+                                    </Grid>
+                                </ContentControl.Content>
+                            </ContentControl>
 
-                        <TextBlock
+                            <TextBlock
                             x:Name="PART_CaptionTextBlock"
                             Grid.Row="1"
                             Grid.Column="2"
@@ -56,8 +57,8 @@
                             VerticalAlignment="Center"
                             Foreground="{TemplateBinding StandardForeground}"
                             Text="{TemplateBinding Caption}" />
-                    </Grid>
-
+                        </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_CaptionTextBlock" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisabledForeground}" />

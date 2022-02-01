@@ -3,10 +3,37 @@
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <Copyright>Sascha-Heinz Patschka</Copyright>
+    <PackageProjectUrl>https://github.com/NoFear23m/SpsModernWpfControls</PackageProjectUrl>
+    <PackageIcon>package.png</PackageIcon>
+    <RepositoryUrl>https://github.com/NoFear23m/SpsModernWpfControls</RepositoryUrl>
+    <PackageTags>wpf;control;modern;breadcrumb;icon;path</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.1.2</AssemblyVersion>
+    <FileVersion>1.0.1.2</FileVersion>
+    <Version>$(AssemblyVersion)</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+    <Page Remove="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Editors\EditableDateBox.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Themes\EditableDateBoxResource.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\Downloads\package.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

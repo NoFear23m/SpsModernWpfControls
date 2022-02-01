@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpsModernWpfControls.Demo
+namespace SpsModernWpfControls.Demo.Icon
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaktionslogik für uclXamlPathIconDemo.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class uclXamlPathIconDemo : UserControl
     {
-        public MainWindow()
+        public uclXamlPathIconDemo()
         {
             InitializeComponent();
         }
-
-       
     }
 }

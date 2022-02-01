@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="SpsModernWpfControls.Demo.BreadCrumb.uclSimpleBreadCrumb"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpsModernWpfControls.Demo.BreadCrumb" 
+             xmlns:WpfBreadCrumbNavigation="clr-namespace:SpsModernWpfControls.Controls.BreadCrumb;assembly=SpsModernWpfControls.Controls"
+             xmlns:Converter="clr-namespace:SpsModernWpfControls.Controls.Converter;assembly=SpsModernWpfControls.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <UserControl.Resources>
+        <Converter:DoubleToLeftMarginConverter x:Key="DoubleToLeftMarginConverter"/>
+        <Converter:BooleanToNotVisibleConverter x:Key="BooleanToNotVisibleConverter"/>
+        <Converter:BooleanToVisibleConverter x:Key="BooleanToVisibleConverter"/>
+
+        <Style x:Key="BreadcrumbNavigationStyle1" TargetType="{x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}" x:Shared="False">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}">
+                        <ListBox x:Name="myListbox" Padding="0" DockPanel.Dock="Left" ItemsSource="{Binding NavigationItems, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"
+                            Background="Transparent" BorderThickness="0" IsSynchronizedWithCurrentItem="True"
+                            ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectedItem="{Binding SelectedItem, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden">
+
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" 
+                                        Margin="{Binding ItemsJointWidth, Converter={StaticResource DoubleToLeftMarginConverter}, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="{Binding ItemsBackgroundBrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>
+                                    <Setter Property="BorderBrush" Value="{Binding ItemsBorderBrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>
+                                    <Setter Property="Margin" Value="{Binding ItemsMargin, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>
+                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+                                    <Setter Property="ToolTip" Value="{Binding Header.Tooltip}"/>
+                                    <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>
+                                    <Setter Property="Padding" Value="{Binding ItemsPadding, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>
+                                    <Setter Property="IsHitTestVisible" Value="True"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <DockPanel LastChildFill="True" Background="Transparent"
+                                                    Margin="{Binding ItemsJointWidth, ConverterParameter=negative, Converter={StaticResource DoubleToLeftMarginConverter}, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}">
+
+
+                                                    <!--<Path x:Name="PathLeft" DockPanel.Dock="Left" Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}" 
+                                                        Data="F1 M 103.791,0.500021L 0.500031,0.500021L 96.5,160.5L 0.5,320.5L 103.708,320.5" 
+                                                        Stretch="Fill" Height="30" StrokeThickness="1" StrokeLineJoin="Round" HorizontalAlignment="Right"
+                                                        Width="{Binding ItemsJointWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>-->
+                                                    <Label Visibility="{Binding HasPreviousItems,Converter={StaticResource BooleanToVisibleConverter}}" Content=">"></Label>
+
+                                                    <Label x:Name="Border" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                                        Padding="{TemplateBinding Padding}"
+                                                        BorderThickness="0,1" VerticalAlignment="Center" Height="30" Margin="-1,0" FontStyle="Normal">
+                                                        <ContentPresenter VerticalAlignment="Center"/>
+                                                    </Label>
+
+
+                                                    <!--<Path x:Name="PathRight" Height="30" HorizontalAlignment="Left" 
+                                                        Stretch="Fill" StrokeLineJoin="Round"  StrokeThickness="1"
+                                                        Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}"
+                                                        Data="F1 M 10,0.500021L 106.656,160.5L 9.99994,320.5"
+                                                        Width="{Binding ItemsJointWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>-->
+
+                                                </DockPanel>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter TargetName="Border" Property="Foreground" Value="Blue"/>
+                                                        <!--<Setter TargetName="PathLeft" Property="Fill" Value="{Binding SelectedItemBackgroundbrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>
+                                                        <Setter TargetName="PathRight" Property="Fill" Value="{Binding SelectedItemBackgroundbrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>-->
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsNavigatable}" Value="False">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Foreground" Value="{Binding DisabledItemForegroundBrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="Blue"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid VerticalAlignment="Center" Height="30">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ContentControl Grid.Column="1" Content="{Binding Header.Caption}" VerticalAlignment="Center"/>
+
+                                        <ContentControl Grid.Column="0" Margin="0,0,5,0" Visibility="{Binding HideImages, Converter={StaticResource BooleanToNotVisibleConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfBreadCrumbNavigation:BreadcrumbNavigation}}}" 
+                                            Content="{Binding Header.Image}" VerticalAlignment="Center"/>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+       
+        <StackPanel>
+            <WpfBreadCrumbNavigation:BreadcrumbNavigation x:Name="Test1" FontWeight="Bold" Margin="4">
+
+                <WpfBreadCrumbNavigation:BreadCrumbItem Content="Huhu" HasPreviousItems="False">
+                    <WpfBreadCrumbNavigation:BreadCrumbItem.Header>
+                        <WpfBreadCrumbNavigation:BreadCrumbNavigationHeader Caption="Headerrrr" Tooltip="Mein Tooltip 1"/>
+                    </WpfBreadCrumbNavigation:BreadCrumbItem.Header>
+                </WpfBreadCrumbNavigation:BreadCrumbItem>
+                <WpfBreadCrumbNavigation:BreadCrumbItem Content="Huhu1" IsNavigatable="True">
+                    <WpfBreadCrumbNavigation:BreadCrumbItem.Header>
+                        <WpfBreadCrumbNavigation:BreadCrumbNavigationHeader Caption="Header 2" Tooltip="Mein Tooltip 2"/>
+                    </WpfBreadCrumbNavigation:BreadCrumbItem.Header>
+                </WpfBreadCrumbNavigation:BreadCrumbItem>
+                <WpfBreadCrumbNavigation:BreadCrumbItem Content="Huhu2" IsNavigatable="False">
+                    <WpfBreadCrumbNavigation:BreadCrumbItem.Header>
+                        <WpfBreadCrumbNavigation:BreadCrumbNavigationHeader Caption="Header 3" Tooltip="Mein Tooltip 3"/>
+                    </WpfBreadCrumbNavigation:BreadCrumbItem.Header>
+                </WpfBreadCrumbNavigation:BreadCrumbItem>
+
+            </WpfBreadCrumbNavigation:BreadcrumbNavigation>
+
+            <WpfBreadCrumbNavigation:BreadcrumbNavigation x:Name="Test2" NavigationItems="{Binding BreadItems, Mode=OneWay}" FontWeight="Bold" Margin="4"/>
+            
+            
+            <WpfBreadCrumbNavigation:BreadcrumbNavigation x:Name="bc" Grid.Row="0"
+                                                   ItemsBorderBrush="Gray" ItemsMargin="3" ItemsPadding="3" 
+                                                   DisabledItemForegroundBrush="#C7CDCF" HideImages="True" FontWeight="Bold" FontStyle="Italic"
+                                                   Foreground="Black" ItemsJointWidth="8" 
+                                                   Style="{StaticResource BreadcrumbNavigationStyle1}" 
+                                                   >
+                <WpfBreadCrumbNavigation:BreadcrumbNavigation.ItemsBackgroundBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF494949" Offset="0"/>
+                        <GradientStop Color="#FF878383" Offset="0.49"/>
+                        <GradientStop Color="#FFA8A8A8" Offset="0.476"/>
+                    </LinearGradientBrush>
+                </WpfBreadCrumbNavigation:BreadcrumbNavigation.ItemsBackgroundBrush>
+                <WpfBreadCrumbNavigation:BreadcrumbNavigation.SelectedItemBackgroundbrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFBFA887" Offset="0"/>
+                        <GradientStop Color="#FF765927" Offset="0.49"/>
+                        <GradientStop Color="#FF765927" Offset="0.476"/>
+                    </LinearGradientBrush>
+                </WpfBreadCrumbNavigation:BreadcrumbNavigation.SelectedItemBackgroundbrush>
+            </WpfBreadCrumbNavigation:BreadcrumbNavigation>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
