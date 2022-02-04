@@ -9,8 +9,8 @@
     <RepositoryUrl>https://github.com/NoFear23m/SpsModernWpfControls</RepositoryUrl>
     <PackageTags>wpf;control;modern;breadcrumb;icon;path</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.1.2</AssemblyVersion>
-    <FileVersion>1.0.1.2</FileVersion>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
     <Version>$(AssemblyVersion)</Version>
   </PropertyGroup>
 

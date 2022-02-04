@@ -9,8 +9,8 @@
         <ResourceDictionary Source="/SpsModernWpfControls.Controls;component/Themes/BreadCrumbResource.xaml"/>
         <ResourceDictionary Source="/SpsModernWpfControls.Controls;component/Themes/XamlPathIconResource.xaml"/>
         <ResourceDictionary Source="/SpsModernWpfControls.Controls;component/Themes/EditableTextBoxResource.xaml"/>
-        <ResourceDictionary Source="/SpsModernWpfControls.Controls;component/Themes/EditableDateBoxResource.xaml"/>
-        
+        <ResourceDictionary Source="/SpsModernWpfControls.Controls;component/Themes/EditableContentControlResource.xaml"/>
+
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

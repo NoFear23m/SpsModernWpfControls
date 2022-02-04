@@ -19,11 +19,23 @@
         </TabItem>
         <TabItem Header="Editable">
             <DockPanel LastChildFill="True">
-                <!--<editors:EditableTextBox ShowEditIcon="True" IsInEditMode="False" Text="Hallo Welt" DockPanel.Dock="Top" Margin="5"
-                                         HighlightBrush="Orange"/>-->
+                <editors:EditableTextBox x:Name="test1" ShowEditIcon="True" IsInEditMode="False" 
+                                         Text="{Binding TestProp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top" Margin="5"
+                                         HighlightBrush="Orange" SaveNewValueCommand="{Binding Save}"
+                                         HighlightActivation="OnHover"/>
+                <editors:EditableContentControl x:Name="test2" ShowEditIcon="True" IsInEditMode="False" 
+                                         Text="{Binding Text,ElementName=cmb1,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top" Margin="5"
+                                         HighlightBrush="Orange" 
+                                         HighlightActivation="Allways">
+                    <ComboBox x:Name="cmb1" SelectedIndex="0">
+                        <ComboBoxItem>Hallo</ComboBoxItem>
+                        <ComboBoxItem>Bye</ComboBoxItem>
+                    </ComboBox>
+                </editors:EditableContentControl>
                 <!--<editors:EditableDateBox ShowEditIcon="True" IsInEditMode="False" DateTime="{Binding Source={x:Static System:DateTime.Now},StringFormat='dd.mm.yyy HH:mm:ss'}" 
                                          HighlightBrush="Brown"
                                          FontWeight="Bold"/>-->
+                <TextBlock Text="{Binding Text, ElementName=test1,Mode=OneWay}"/>
             </DockPanel>
                
                 

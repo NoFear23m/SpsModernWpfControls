@@ -16,7 +16,15 @@ namespace SpsModernWpfControls.Controls.Converter
             if (System.Convert.ToBoolean(value))
                 return Visibility.Visible;
             else
+                if (parameter != null && parameter.ToString() == "H")
+            {
+                return Visibility.Hidden;
+            }
+            else
+            {
                 return Visibility.Collapsed;
+            }
+                
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
